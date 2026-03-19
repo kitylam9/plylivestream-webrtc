@@ -9,16 +9,15 @@ import fs from "fs";
 async function startServer() {
   const app = express();
   app.use(cors({
-    origin: true,
-    credentials: true
+    origin: (origin, callback) => callback(null, true),
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"]
   }));
   const httpServer = createHttpServer(app);
   const io = new SocketServer(httpServer, {
     cors: {
-      origin: (origin, callback) => {
-        // Allow all origins, including null/undefined
-        callback(null, true);
-      },
+      origin: (origin, callback) => callback(null, true),
       methods: ["GET", "POST"],
       credentials: true
     },
