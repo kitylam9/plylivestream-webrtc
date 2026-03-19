@@ -1,0 +1,5 @@
+{
+  "name": "WebRTC Point Cloud Streamer",
+  "description": "A platform to stream and render PLY point cloud sequences as animations using WebRTC data channels.",
+  "requestFramePermissions": []
+}
